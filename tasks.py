@@ -28,6 +28,9 @@
 # MySQL Python Connector
 # MySQL Python Tutorial
 
+# Good skills to have in your tool box
+# MUST SAVE FREQ. AND EVERY PAGE (*Ctrl + S)
+# Ctrl + Shift ` to open terminal  
 # ctrl + k + c / ctrl + k + u (**in this order!)
 # and classic tab and tab + shift
 
