@@ -29,9 +29,10 @@ def user_login():
             # Login successful
             username = user_name_input
             print("Login successful.")
+            exit()
         else:
             print("Incorrect username or password.")
-            exit()
+            
 
     except mysql.connector.Error as e:
         print("MySQL Error:", e)
