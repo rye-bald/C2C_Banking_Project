@@ -29,8 +29,8 @@ def user_login():
             # Login successful
             username = user_name_input
             print("Login successful.")
-            exit()
             user_main(username)
+            
 
         else:
             print("Incorrect username or password.")
