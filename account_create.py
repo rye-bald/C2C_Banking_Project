@@ -24,19 +24,19 @@ def create_account():
         employee_status = input("Are you an employee? Enter '1' for yes, '2' for no: ")
 
     if employee_status == '1':
-        account_type = 'Employee'
+        new_account_type = 'Employee'
     else:
-        account_type = 'Non-Employee'
+        new_account_type = 'Non-Employee'
 
-    new_user_verification(new_username, new_password, sign_up_name, new_email, account_type)
+    new_user_verification(new_username, new_password, sign_up_name, new_email, new_account_type)
 
 
-def new_user_verification(new_username, new_password, sign_up_name, email, account_type):
+def new_user_verification(new_username, new_password, sign_up_name, email, new_account_type):
     if len(new_username) >= 5 and len(new_password) > 5:
         print(f'Welcome to BANK OF BALDWINS, {sign_up_name}! We are delighted to have you as one of our new banking customers!')
         
         # Append user's sign_up_name, password, and username into the dataset or database
-        add_account(new_username, new_password, sign_up_name, email, account_type)
+        add_account(new_username, new_password, sign_up_name, email, new_account_type)
     else:
         print("*** YOU'VE SEEMED TO HAVE MADE AN ERROR IN YOUR SIGN-UP PAGE ***")
         print("*** PLEASE ENSURE YOUR USERNAME HAS AT LEAST 5 CHARACTERS AND YOUR PASSWORD IS LONGER THAN 5 CHARACTERS. ***")
@@ -45,7 +45,7 @@ def new_user_verification(new_username, new_password, sign_up_name, email, accou
 
 import mysql.connector
 
-def add_account(new_username, new_password, sign_up_name, email, account_type):
+def add_account(new_username, new_password, sign_up_name, email, new_account_type):
     try:
         # Connect to MySQL using the MySQL extension
         connection = mysql.connector.connect(
@@ -58,8 +58,8 @@ def add_account(new_username, new_password, sign_up_name, email, account_type):
         cursor = connection.cursor()
 
         # Insert new account data into the user_logins table
-        query = "INSERT INTO c2c_banking_data.user_logins (sign_up_name, user_name, email, password, account_type) VALUES (%s, %s, %s, %s, %s)"
-        cursor.execute(query, (sign_up_name, new_username, email, new_password, account_type))
+        query = "INSERT INTO c2c_banking_data.user_logins (sign_up_name, user_name, email, password, employee_type) VALUES (%s, %s, %s, %s, %s)"
+        cursor.execute(query, (sign_up_name, new_username, email, new_password, new_account_type))
         connection.commit()
 
         print("Account created successfully!")
