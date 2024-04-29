@@ -1,7 +1,5 @@
 #  check balance, deposit, withdraw, create account, delete account, modify account) and create tables for account data.
 
-
-
 def create_account():
     print("In order to create a new account, we will need some personal identifying information to associate with your account.\n")
 
@@ -28,11 +26,3 @@ def new_user_verification(username, password, birth_name):
         print("*** YOU'VE SEEMED TO HAVE MADE AN ERROR IN YOUR SIGN-UP PAGE ***")
         print("*** PLEASE ENSURE YOUR USERNAME HAS AT LEAST 5 CHARACTERS AND YOUR PASSWORD IS LONGER THAN 5 CHARACTERS. ***")
         create_account()
-
-def delete_account():
-    print("It seems that you would like to delete your account from BANK OF BALDWINS... We are sad to let you go.")
-    username = input("What is the username of your old account? ")
-    password = input("What is the password of your old account? ")
-    # Cycle through the database to find and delete the user's account if found
-
-
