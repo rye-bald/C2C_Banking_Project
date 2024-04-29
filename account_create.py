@@ -62,7 +62,7 @@ def add_account(new_username, new_password, sign_up_name, email, new_account_typ
         connection.commit()
 
         print("Account created successfully!")
-        welcome_page()
+        exit()
         
     except mysql.connector.Error as e:
         print("MySQL Error:", e)

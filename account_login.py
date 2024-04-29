@@ -30,7 +30,7 @@ def user_login():
             print("Login successful.")
         else:
             print("Incorrect username or password.")
-            welcome_page()
+            exit()
 
     except mysql.connector.Error as e:
         print("MySQL Error:", e)
