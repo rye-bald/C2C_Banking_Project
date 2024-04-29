@@ -1,7 +1,5 @@
 # check balance, deposit, withdraw, create account, delete account, modify account) and create tables for account data.
 
-from starting_page import welcome_page
-
 def create_account():
     print("In order to create a new account, we will need some personal identifying information to associate with your account.\n")
 
@@ -45,7 +43,6 @@ def new_user_verification(new_username, new_password, sign_up_name, email, new_a
         create_account()
 
 
-import mysql.connector
 
 def add_account(new_username, new_password, sign_up_name, email, new_account_type):
     try:
