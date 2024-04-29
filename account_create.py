@@ -1,9 +1,9 @@
-#  check balance, deposit, withdraw, create account, delete account, modify account) and create tables for account data.
+# check balance, deposit, withdraw, create account, delete account, modify account) and create tables for account data.
 
 def create_account():
     print("In order to create a new account, we will need some personal identifying information to associate with your account.\n")
 
-    birth_name = input("What is your birth name? ")
+    sign_up_name = input("What is your birth name? ")
     new_username = input("Your username must be a minimum of 5 characters long: ")
 
     while len(new_username) < 5:
@@ -16,14 +16,27 @@ def create_account():
         print("*** Error: Your password must be longer than 5 characters. Please try again. ***")
         new_password = input("Your password: ")
 
-    new_user_verification(new_username, new_password, birth_name)
+    new_email = input("What is your email address? ")
+    employee_status = input("Are you an employee? Enter '1' for yes, '2' for no: ")
 
-def new_user_verification(username, password, birth_name):
-    if len(username) >= 5 and len(password) > 5:
-        print(f'Welcome to BANK OF BALDWINS, {birth_name}! We are delighted to have you as one of our new banking customers!')
+    while employee_status not in ['1', '2']:
+        print("*** Error: Please enter either '1' for yes or '2' for no. ***")
+        employee_status = input("Are you an employee? Enter '1' for yes, '2' for no: ")
+
+    if employee_status == '1':
+        account_type = 'Employee'
+    else:
+        account_type = 'Non-Employee'
+
+    new_user_verification(new_username, new_password, sign_up_name, new_email, account_type)
+
+
+def new_user_verification(new_username, new_password, sign_up_name, email, account_type):
+    if len(new_username) >= 5 and len(new_password) > 5:
+        print(f'Welcome to BANK OF BALDWINS, {sign_up_name}! We are delighted to have you as one of our new banking customers!')
         
-        # Append user's birth_name, password, and username into the dataset or database
-        add_account(username, password, birth_name)
+        # Append user's sign_up_name, password, and username into the dataset or database
+        add_account(new_username, new_password, sign_up_name, email, account_type)
     else:
         print("*** YOU'VE SEEMED TO HAVE MADE AN ERROR IN YOUR SIGN-UP PAGE ***")
         print("*** PLEASE ENSURE YOUR USERNAME HAS AT LEAST 5 CHARACTERS AND YOUR PASSWORD IS LONGER THAN 5 CHARACTERS. ***")
@@ -32,7 +45,7 @@ def new_user_verification(username, password, birth_name):
 
 import mysql.connector
 
-def add_account(username, password, birth_name):
+def add_account(new_username, new_password, sign_up_name, email, account_type):
     try:
         # Connect to MySQL using the MySQL extension
         connection = mysql.connector.connect(
@@ -45,8 +58,8 @@ def add_account(username, password, birth_name):
         cursor = connection.cursor()
 
         # Insert new account data into the user_logins table
-        query = "INSERT INTO c2c_banking_data.user_logins (user_name, password, birth_name) VALUES (%s, %s, %s)"
-        cursor.execute(query, (username, password, birth_name))
+        query = "INSERT INTO c2c_banking_data.user_logins (sign_up_name, user_name, email, password, account_type) VALUES (%s, %s, %s, %s, %s)"
+        cursor.execute(query, (sign_up_name, new_username, email, new_password, account_type))
         connection.commit()
 
         print("Account created successfully!")
@@ -65,3 +78,4 @@ def add_account(username, password, birth_name):
                 print("MySQL connection closed.")
         except Exception as ex:
             print("Error closing connection:", ex)
+
