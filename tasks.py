@@ -4,7 +4,7 @@
 # Step 6: Write tests for all the functions
 
 # Weekly milestones:
-# By the end of week 2: Students have created SQL tables needed for the app and have successfully created all (or most) functions for all tasks (check balance, deposit, withdraw, create account, delete account, modify account) and create tables for account data.
+# By the end of week 2: Students have created SQL tables needed for the app and have successfully created all (or most) functions for all tasks (check balance, deposit, withdraw, create account, delete account,) and create tables for account data.
 # By the end of week 3: Students have finished creating all of the functions for the task and created a UI for all remaining tasks and have written tests for all functions
 # By the end of week 4: The app should be functional and meet all requirements
 # Possible extension ideas: 

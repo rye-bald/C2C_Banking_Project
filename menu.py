@@ -104,11 +104,12 @@ def user_main(username):
             get_balance_for_user(username)
             print(f'Your current balance is ${get_balance_for_user(username):.2f}')
         elif choice == "2":
-            deposit_amount = input(f'How much would you like to deposit today, {username}?')
+            deposit_amount_str = input(f'How much would you like to deposit today, {username}?') #input goes in as a string
+            deposit_amount = int(deposit_amount_str) #user input comes out as an integer that fits the required parameters of the function deposit()
             deposit(username, deposit_amount)
-            # Update the user's balance in the profile/database if needed
+            # Takes in deposit, outputs total amount in account and updates SQL column
         elif choice == "3":
-            print("Exiting the program. Goodbye!")
+            print("Exiting the program. Thank you for using BANK OF BALDWIN!")
             break
         else:
             print("Invalid choice. Please enter 1, 2, or 3.")
