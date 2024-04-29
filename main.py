@@ -24,4 +24,6 @@ print(get_balance_for_user('davebald312'))
 
 from account_create import create_account, new_user_verification, add_account
 
-create_account()
+from account_delete import delete_account
+
+delete_account()
