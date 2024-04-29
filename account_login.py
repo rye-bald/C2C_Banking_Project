@@ -1,5 +1,6 @@
 import mysql.connector
 
+from starting_page import welcome_page
 # Global variable to store the logged-in username
 username = None
 

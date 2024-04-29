@@ -30,4 +30,4 @@ from account_login import user_login
 
 from starting_page import welcome_page
 
-welcome_page
+welcome_page()

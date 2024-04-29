@@ -1,6 +1,7 @@
 
 import mysql.connector
 
+from starting_page import welcome_page
 def delete_account():
     print("It seems that you would like to delete your account from BANK OF BALDWINS... We are sad to let you go.")
     username = input("What is the username of your old account? ")

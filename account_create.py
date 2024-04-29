@@ -1,5 +1,7 @@
 # check balance, deposit, withdraw, create account, delete account, modify account) and create tables for account data.
 
+from starting_page import welcome_page
+
 def create_account():
     print("In order to create a new account, we will need some personal identifying information to associate with your account.\n")
 
