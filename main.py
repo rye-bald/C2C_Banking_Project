@@ -65,4 +65,3 @@ def user_main(username):
 
 welcome_page()
 
-user_main(username)
