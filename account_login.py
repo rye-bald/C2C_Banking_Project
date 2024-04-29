@@ -1,5 +1,5 @@
 import mysql.connector
-
+from menu import user_main
 # Global variable to store the logged-in username
 username = None
 
@@ -28,12 +28,11 @@ def user_login():
         if result:
             # Login successful
             username = user_name_input
+
             print("Login successful.")
+
             user_main(username)
             
-            
-            
-
         else:
             print("Incorrect username or password.")
             
