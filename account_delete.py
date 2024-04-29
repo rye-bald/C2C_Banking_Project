@@ -1,3 +1,4 @@
+import mysql.connector
 
 def delete_account():
     print("It seems that you would like to delete your account from BANK OF BALDWINS... We are sad to let you go.")

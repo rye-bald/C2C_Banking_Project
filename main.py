@@ -10,7 +10,7 @@ import mysql.connector
 from account_create import create_account
 from account_delete import delete_account
 from account_login  import user_login
-from menu import user_main, get_balance_for_user, deposit
+from menu import get_balance_for_user, deposit, withdraw
 
 
 def welcome_page():
@@ -36,5 +36,33 @@ def welcome_page():
             break
         else:
             print("Invalid choice. Please enter 1, 2, 3, or 4.")
-            
+
+def user_main(username):
+    while True:
+        print("\nOptions:")
+        print("1. Check Balance")
+        print("2. Deposit")
+        print("3. Withdraw")
+        print("4. Exit")
+        choice = input("Enter your choice (1, 2, 3, or 4): ")
+
+        if choice == "1":
+            get_balance_for_user(username)
+            print(f'Your current balance is ${get_balance_for_user(username):.2f}')
+        elif choice == "2":
+            deposit_amount_str = input(f'How much would you like to deposit today, {username}?')
+            deposit_amount = int(deposit_amount_str)
+            deposit(username, deposit_amount)
+        elif choice == "3":
+            withdraw_amount_str = input(f'How much would you like to withdraw today, {username}?')
+            withdraw_amount = int(withdraw_amount_str)
+            withdraw(username, withdraw_amount)
+        elif choice == "4":
+            print("Exiting the program. Thank you for using BANK OF BALDWIN!")
+            break
+        else:
+            print("Invalid choice. Please enter 1, 2, 3, or 4.")
+
 welcome_page()
+
+user_main(username)

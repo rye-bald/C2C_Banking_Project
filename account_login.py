@@ -1,3 +1,4 @@
+import mysql.connector
 
 # Global variable to store the logged-in username
 username = None

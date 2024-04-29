@@ -1,4 +1,5 @@
 # check balance, deposit, withdraw, create account, delete account, modify account) and create tables for account data.
+import mysql.connector
 
 def create_account():
     print("In order to create a new account, we will need some personal identifying information to associate with your account.\n")
