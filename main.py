@@ -26,6 +26,8 @@ from account_create import create_account, new_user_verification, add_account
 
 from account_delete import delete_account
 
-from account_login import sign_in, user_login
+from account_login import user_login
 
-user_login()
+from starting_page import welcome_page
+
+welcome_page

@@ -31,6 +31,7 @@ def user_login():
             print("Login successful.")
         else:
             print("Incorrect username or password.")
+            welcome_page()
 
     except mysql.connector.Error as e:
         print("MySQL Error:", e)
@@ -46,3 +47,4 @@ def user_login():
                 print("MySQL connection closed.")
         except Exception as ex:
             print("Error closing connection:", ex)
+

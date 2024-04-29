@@ -28,8 +28,10 @@ def delete_account():
             cursor.execute(delete_query, (username, password))
             connection.commit()
             print("Your account has been successfully deleted.")
+            welcome_page()
         else:
             print("No matching account found. Please check your username and password.")
+            welcome_page()
 
     except mysql.connector.Error as e:
         print("MySQL Error:", e)
