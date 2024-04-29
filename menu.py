@@ -92,24 +92,78 @@ def deposit(username, deposit_amount):
             print("Error closing connection:", ex)
 
 
-def user_main(username):    
+def withdraw(username, withdraw_amount):
+    connection = None
+    try:
+        # Connect to MySQL using the MySQL extension
+        connection = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='Swarthmore2028',
+            database='c2c_banking_data'
+        )
+
+        cursor = connection.cursor()
+
+        # Fetch the current balance for the specified user
+        query_select = "SELECT checking_account_main FROM c2c_banking_data.user_logins WHERE user_name = %s"
+        cursor.execute(query_select, (username,))
+        result = cursor.fetchone()
+
+        if result:
+            current_balance = result[0]
+            if current_balance >= withdraw_amount:
+                new_balance = current_balance - withdraw_amount
+
+                # Update the checking_account_main column with the new balance
+                query_update = "UPDATE c2c_banking_data.user_logins SET checking_account_main = %s WHERE user_name = %s"
+                cursor.execute(query_update, (new_balance, username))
+                connection.commit()
+
+                print(f"Withdrawal of ${withdraw_amount:.2f} successful. Your new balance is ${new_balance:.2f}")
+            else:
+                print("Insufficient funds.")
+        else:
+            print(f"User with username {username} not found.")
+
+    except mysql.connector.Error as e:
+        print("MySQL Error:", e)
+
+    except Exception as ex:
+        print("Error:", ex)
+
+    finally:
+        try:
+            if connection is not None and connection.is_connected():
+                cursor.close()
+                connection.close()
+                print("MySQL connection closed.")
+        except Exception as ex:
+            print("Error closing connection:", ex)
+
+
+def user_main(username):
     while True:
         print("\nOptions:")
         print("1. Check Balance")
         print("2. Deposit")
-        print("3. Exit")
-        choice = input("Enter your choice (1, 2, or 3): ")
+        print("3. Withdraw")
+        print("4. Exit")
+        choice = input("Enter your choice (1, 2, 3, or 4): ")
 
         if choice == "1":
             get_balance_for_user(username)
             print(f'Your current balance is ${get_balance_for_user(username):.2f}')
         elif choice == "2":
-            deposit_amount_str = input(f'How much would you like to deposit today, {username}?') #input goes in as a string
-            deposit_amount = int(deposit_amount_str) #user input comes out as an integer that fits the required parameters of the function deposit()
+            deposit_amount_str = input(f'How much would you like to deposit today, {username}?')
+            deposit_amount = int(deposit_amount_str)
             deposit(username, deposit_amount)
-            # Takes in deposit, outputs total amount in account and updates SQL column
         elif choice == "3":
+            withdraw_amount_str = input(f'How much would you like to withdraw today, {username}?')
+            withdraw_amount = int(withdraw_amount_str)
+            withdraw(username, withdraw_amount)
+        elif choice == "4":
             print("Exiting the program. Thank you for using BANK OF BALDWIN!")
             break
         else:
-            print("Invalid choice. Please enter 1, 2, or 3.")
+            print("Invalid choice. Please enter 1, 2, 3, or 4.")

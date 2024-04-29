@@ -26,4 +26,6 @@ from account_create import create_account, new_user_verification, add_account
 
 from account_delete import delete_account
 
-delete_account()
+from account_login import sign_in, user_login
+
+user_login(user_name_input, password_input)
