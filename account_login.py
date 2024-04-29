@@ -3,9 +3,11 @@ import mysql.connector
 # Global variable to store the logged-in username
 username = None
 
-def user_login(user_name_input, password_input):
+def user_login():
     global username
-    sign_in(user_name_input, password_input)
+    user_name_input = input("Enter your username: ")
+    password_input = input("Enter your password: ")
+
     connection = None
     try:
         # Connect to MySQL using the MySQL extension
@@ -19,14 +21,13 @@ def user_login(user_name_input, password_input):
         cursor = connection.cursor()
 
         # Check if the username and password match a row in the user_logins table
-        query = "SELECT user_name & password FROM c2c_banking_data.user_logins WHERE user_name = %s AND password = %s"
+        query = "SELECT user_name, password FROM c2c_banking_data.user_logins WHERE user_name = %s AND password = %s"
         cursor.execute(query, (user_name_input, password_input))
         result = cursor.fetchone()
 
         if result:
             # Login successful
             username = user_name_input
-            password = password_input
             print("Login successful.")
         else:
             print("Incorrect username or password.")
@@ -45,8 +46,3 @@ def user_login(user_name_input, password_input):
                 print("MySQL connection closed.")
         except Exception as ex:
             print("Error closing connection:", ex)
-
-def sign_in(user_name_input, password_input):
-    user_name_input = input("Enter your username: ")
-    password_input = input("Enter your password: ")
-

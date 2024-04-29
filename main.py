@@ -28,4 +28,4 @@ from account_delete import delete_account
 
 from account_login import sign_in, user_login
 
-user_login(user_name_input, password_input)
+user_login()
